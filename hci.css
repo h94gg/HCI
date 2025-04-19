@@ -6,11 +6,11 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    background-repeat: no-repeat; */
-    padding: 15px;
+    background-repeat: no-repeat;
+    padding: 7px;
     padding-bottom: 50px;
     margin: 0;
-    border-radius:10px;
+    border-radius:10px; */
     
     
   }
@@ -18,7 +18,7 @@ body {
   h2 {
     color: #177ce1;
     text-align: center;
-    font-size: 4em;
+    font-size: 2em;
     margin-bottom: 30px;
     border-radius: 20px 0px 20px ;
     box-shadow:  10px 10px 10px  rgba(20, 115, 187, 0.262);
@@ -44,7 +44,7 @@ body {
   }
   
   .question p {
-    font-size: 2.2em;
+    font-size: 1.1em;
     color: #177ce1;
     line-height: 1.5;
     border-top: 2px #503b2c;
@@ -54,7 +54,7 @@ body {
   
   .question i {
     
-    font-size: 2em;
+    font-size: 1em;
     color: #7f8c8d;
     
     
@@ -72,7 +72,7 @@ body {
   .choices label {
     display: block;
     margin: 8px 0;
-    font-size: 2.2em;
+    font-size: 1.1em;
     color: #1964af;
     cursor: pointer;
     border-radius: 20px 0px 20px ;
@@ -83,7 +83,7 @@ body {
   button {
     background-color: #58a2d3;
     color: white;
-    font-size: 2.4em;
+    font-size: 1.2em;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -102,7 +102,7 @@ body {
   /* Result Styling */
   .result {
     font-weight: bold;
-    font-size: 2.6em;
+    font-size: 1.3em;
     color: #27ae60;
     text-align: center;
     margin-top: 20px;
@@ -115,12 +115,12 @@ body {
     }
   
     .question p {
-      font-size: 2em;
+      font-size: 1em;
    
     }
   
     .choices label {
-      font-size: 2em;
+      font-size: 1em;
       
     }
     
