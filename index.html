@@ -1,704 +1,278 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simulation & Modeling Question Bank</title>
+<title>Quiz - Modeling and Simulation</title>
 <style>
-.translate-btn {
-    background: #34a853;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 13px;
-    margin-bottom: 10px;
-}
-.translation-area {
-    display: none;
-    background: #e8f5e9;
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    direction: rtl;
-    text-align: right;
-    border-right: 4px solid #34a853;
-}
-.ar-opt {
-    display: none;
-    font-size: 14px;
-    color: #5f6368;
-    margin-top: 4px;
-    direction: rtl;
-    text-align: right;
-}
-</style>
-<style>
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 15px;
-    background: #0F172A;
-    direction: ltr;
-}
-.container {
-    max-width: 1000px;
-    margin: auto;
-    padding-bottom: 100px;
-}
-#scoreBox {
-    background: linear-gradient(135deg, #0072ff, #00c6ff);
-    color: white;
-    padding: 15px;
-    text-align: center;
-    font-size: 20px;
-    position: sticky;
-    top: 10px;
-    z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-    border-bottom-left-radius: 20px;
-    border-top-right-radius: 20px;
-}
-.question-card {
-    background: white;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow:
-        12px 12px 20px -10px rgba(0, 198, 255, 0.7),
-        -12px 12px 20px -10px rgba(0, 114, 255, 0.7),
-        0px 20px 30px -10px rgba(0, 114, 255, 0.4);
-    border-bottom-left-radius: 20px;
-    border-top-right-radius: 20px;
-}
-.q-text {
-    font-size: 18px;
-    font-weight: 600;
-    color: #1c1e21;
-    margin-bottom: 15px;
-    white-space: pre-line;
-}
-.option {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    border: 2px solid #dadce0;
-    border-radius: 8px;
-    background: #fff;
-    text-align: left;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.option:hover {
-    background: #f8f9fa;
-    border-color: #1a73e8;
-}
-.correct {
-    background: #d4edda !important;
-    border-color: #28a745 !important;
-}
-.wrong {
-    background: #f8d7da !important;
-    border-color: #dc3545 !important;
-}
-.result-msg {
-    margin-top: 15px;
-    font-weight: bold;
-}
-h2 {
-    text-align: center;
-    color: #ffffff;
-}
-.footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: linear-gradient(135deg, #0072ff, #00c6ff);
-    color: white;
-    text-align: center;
-    padding: 12px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-}
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 15px; background: #0F172A; direction: ltr; }
+    .container { max-width: 800px; margin: auto; padding-bottom: 100px; }
+    #scoreBox { background: linear-gradient(135deg, #0072ff, #00c6ff); color: white; padding: 15px; text-align: center; font-size: 20px; position: sticky; top: 10px; z-index: 1000; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; border-bottom-left-radius: 20px; border-top-right-radius: 20px; }
+    .question-card { background: white; padding: 20px; margin-bottom: 20px; box-shadow: 12px 12px 20px -10px rgba(0, 198, 255, 0.7), -12px 12px 20px -10px rgba(0, 114, 255, 0.7), 0px 20px 30px -10px rgba(0, 114, 255, 0.4); border-bottom-left-radius: 20px; border-top-right-radius: 20px;}
+    .q-text { font-size: 18px; font-weight: 600; color: #1c1e21; margin-bottom: 15px; }
+    .translate-btn { background: #34a853; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 13px; margin-bottom: 10px; }
+    .translation-area { display: none; background: #e8f5e9; padding: 10px; border-radius: 8px; margin-bottom: 15px; direction: rtl; text-align: right; border-right: 4px solid #34a853; }
+    .option { width: 100%; padding: 12px; margin: 8px 0; border: 2px solid #dadce0; border-radius: 8px; background: #fff; text-align: left; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; }
+    .option:hover { background: #f8f9fa; border-color: #1a73e8; }
+    .ar-opt { display: none; font-size: 14px; color: #5f6368; margin-top: 4px; direction: rtl; text-align: right; }
+    .correct { background: #d4edda !important; border-color: #28a745 !important; }
+    .wrong { background: #f8d7da !important; border-color: #dc3545 !important; }
+    .result-msg { margin-top: 15px; font-weight: bold; direction: rtl; text-align: right; }
+    .footer { position: fixed; bottom: 0; left: 0; width: 100%; background: linear-gradient(135deg, #0072ff, #00c6ff); color: white; text-align: center; padding: 12px; border-top-left-radius: 20px; border-top-right-radius: 20px; }
+    .footer a { text-decoration: none; color: white; }
 </style>
 </head>
 <body>
+
 <div class="container">
-<div id="scoreBox">Score: 0 / 40</div>
-<h2>Simulation and Modeling - Full Question Bank</h2>
-<div id="quiz-container"></div>
-</div><div class="footer">
-Developed using the original index template
-</div><script>
+    <div id="scoreBox">النتيجة: 0 / 54</div>
+    <div id="quiz-container"></div>
+</div>
+
+<div class="footer">
+    Developed by <a href="https://www.instagram.com/h94g/" target="_blank">حيدر الخفاجي</a>
+</div>
+
+<script>
 const questions = [
-// جميع الأسئلة الآن تدعم الترجمة العربية الكاملة للأسئلة والاختيارات والإجابات
+    // --- True / False Questions (1-20) ---
+    { q: "A model is a simplified representation of a real-world system used to understand complex systems.", arQ: "النموذج هو تمثيل مبسط لنظام حقيقي يستخدم لفهم الأنظمة المعقدة.", options: [{en:"True", ar:"صح", correct:true}, {en:"False", ar:"خطأ", correct:false}] },
+    { q: "Models always include every detail of the real system.", arQ: "النماذج تتضمن دائماً كل تفاصيل النظام الحقيقي.", options: [{en:"True", ar:"صح", correct:false}, {en:"False", ar:"خطأ", correct:true}] },
+    { q: "One objective of modeling is to predict system behavior under different conditions.", arQ: "أحد أهداف النمذجة هو التنبؤ بسلوك النظام تحت ظروف مختلفة.", options: [{en:"True", ar:"صح", correct:true}, {en:"False", ar:"خطأ", correct:false}] },
+    { q: "Physical models are mathematical equations used to describe systems.", arQ: "النماذج الفيزيائية هي معادلات رياضية تستخدم لوصف الأنظمة.", options: [{en:"True", ar:"صح", correct:false}, {en:"False", ar:"خطأ", correct:true}] },
+    { q: "Mathematical models represent systems using equations and mathematical expressions.", arQ: "النماذج الرياضية تمثل الأنظمة باستخدام المعادلات والتعبيرات الرياضية.", options: [{en:"True", ar:"صح", correct:true}, {en:"False", ar:"خطأ", correct:false}] },
+    { q: "A system is a collection of unrelated elements that work independently.", arQ: "النظام هو مجموعة من العناصر غير المرتبطة التي تعمل بشكل مستقل.", options: [{en:"True", ar:"صح", correct:false}, {en:"False", ar:"خطأ", correct:true}] },
+    { q: "Inputs are the resources or data fed into a system for processing.", arQ: "المدخلات هي الموارد أو البيانات التي يتم تغذيتها في النظام لمعالجتها.", options: [{en:"True", ar:"صح", correct:true}, {en:"False", ar:"خطأ", correct:false}] },
+    { q: "Outputs are the results produced by a system after processing inputs.", arQ: "المخرجات هي النتائج التي ينتجها النظام بعد معالجة المدخلات.", options: [{en:"True", ar:"صح", correct:true}, {en:"False", ar:"خطأ", correct:false}] },
+    { q: "Feedback occurs when outputs are returned to influence future system behavior.", arQ: "التغذية الراجعة تحدث عندما تعود المخرجات للتأثير على سلوك النظام في المستقبل.", options: [{en:"True", ar:"صح", correct:true}, {en:"False", ar:"خطأ", correct:false}] },
+    { q: "Closed systems exchange matter freely with their environment.", arQ: "الأنظمة المغلقة تتبادل المادة بحرية مع بيئتها.", options: [{en:"True", ar:"صح", correct:false}, {en:"False", ar:"خطأ", correct:true}] },
+    { q: "Dynamic systems change over time, while static systems remain constant.", arQ: "الأنظمة الديناميكية تتغير بمرور الوقت، بينما تظل الأنظمة الاستاتيكية ثابتة.", options: [{en:"True", ar:"صح", correct:true}, {en:"False", ar:"خطأ", correct:false}] },
+    { q: "Deterministic systems include randomness in their outcomes.", arQ: "الأنظمة الحتمية تتضمن عشوائية في نتائجها.", options: [{en:"True", ar:"صح", correct:false}, {en:"False", ar:"خطأ", correct:true}] },
+    { q: "Simulation is the process of using a model to study system behavior over time.", arQ: "المحاكاة هي عملية استخدام نموذج لدراسة سلوك النظام بمرور الوقت.", options: [{en:"True", ar:"صح", correct:true}, {en:"False", ar:"خطأ", correct:false}] },
+    { q: "Simulation allows risk-free experimentation with real-world scenarios.", arQ: "المحاكاة تسمح بالتجريب الخالي من المخاطر مع سيناريوهات العالم الحقيقي.", options: [{en:"True", ar:"صح", correct:true}, {en:"False", ar:"خطأ", correct:false}] },
+    { q: "Simulation is always cheaper and faster than real-world experiments in every case.", arQ: "المحاكاة دائماً أرخص وأسرع من التجارب الحقيقية في كل حالة.", options: [{en:"True", ar:"صح", correct:false}, {en:"False", ar:"خطأ", correct:true}] },
+    { q: "Discrete-event simulation models systems where changes occur at specific points in time.", arQ: "محاكاة الأحداث المنفصلة تتركز على الأنظمة التي تحدث فيها التغييرات في نقاط زمنية محددة.", options: [{en:"True", ar:"صح", correct:true}, {en:"False", ar:"خطأ", correct:false}] },
+    { q: "Monte Carlo simulation uses random sampling to estimate numerical results.", arQ: "محاكاة مونت كارلو تستخدم العينات العشوائية لتقدير النتائج العددية.", options: [{en:"True", ar:"صح", correct:true}, {en:"False", ar:"خطأ", correct:false}] },
+    { q: "Little's Law states that L = λ × W in a stable system.", arQ: "قانون ليتل ينص على أن L = λ × W في النظام المستقر.", options: [{en:"True", ar:"صح", correct:true}, {en:"False", ar:"خطأ", correct:false}] },
+    { q: "Queue discipline determines the order in which customers receive service.", arQ: "انضباط الطابور يحدد الترتيب الذي يتلقى به الزبائن الخدمة.", options: [{en:"True", ar:"صح", correct:true}, {en:"False", ar:"خطأ", correct:false}] },
+    { q: "FIFO means 'First In First Out' in queueing systems.", arQ: "FIFO تعني 'ما يدخل أولاً يخرج أولاً' في أنظمة الطوابير.", options: [{en:"True", ar:"صح", correct:true}, {en:"False", ar:"خطأ", correct:false}] },
 
-const autoTranslations = {
-"A model is a simplified representation of a real-world system used to understand complex systems.": "النموذج هو تمثيل مبسط لنظام حقيقي يُستخدم لفهم الأنظمة المعقدة.",
-"Models always include every detail of the real system.": "النماذج تتضمن دائماً كل تفاصيل النظام الحقيقي.",
-"One objective of modeling is to predict system behavior under different conditions.": "أحد أهداف النمذجة هو التنبؤ بسلوك النظام تحت ظروف مختلفة.",
-"Physical models are mathematical equations used to describe systems.": "النماذج الفيزيائية هي معادلات رياضية تستخدم لوصف الأنظمة.",
-"Mathematical models represent systems using equations and mathematical expressions.": "تمثل النماذج الرياضية الأنظمة باستخدام المعادلات والتعبيرات الرياضية.",
-"A system is a collection of unrelated elements that work independently.": "النظام هو مجموعة من العناصر غير المرتبطة التي تعمل بشكل مستقل.",
-"Inputs are the resources or data fed into a system for processing.": "المدخلات هي الموارد أو البيانات التي يتم إدخالها إلى النظام للمعالجة.",
-"Outputs are the results produced by a system after processing inputs.": "المخرجات هي النتائج التي ينتجها النظام بعد معالجة المدخلات.",
-"Feedback occurs when outputs are returned to influence future system behavior.": "تحدث التغذية الراجعة عندما تعود المخرجات للتأثير على سلوك النظام مستقبلاً.",
-"Closed systems exchange matter freely with their environment.": "الأنظمة المغلقة تتبادل المادة بحرية مع البيئة المحيطة.",
-"Dynamic systems change over time, while static systems remain constant.": "الأنظمة الديناميكية تتغير مع الزمن بينما الأنظمة الثابتة تبقى ثابتة.",
-"Deterministic systems include randomness in their outcomes.": "الأنظمة الحتمية تتضمن العشوائية في نتائجها.",
-"Simulation is the process of using a model to study system behavior over time.": "المحاكاة هي عملية استخدام نموذج لدراسة سلوك النظام مع مرور الوقت.",
-"Simulation allows risk-free experimentation with real-world scenarios.": "تسمح المحاكاة بإجراء تجارب بدون مخاطر على سيناريوهات العالم الحقيقي.",
-"Simulation is always cheaper and faster than real-world experiments in every case.": "المحاكاة دائماً أرخص وأسرع من التجارب الواقعية في كل الحالات.",
-"Discrete-event simulation models systems where changes occur at specific points in time.": "تحاكي المحاكاة ذات الأحداث المنفصلة الأنظمة التي تحدث فيها التغيرات عند نقاط زمنية محددة.",
-"Monte Carlo simulation uses random sampling to estimate numerical results.": "تستخدم محاكاة مونت كارلو العينات العشوائية لتقدير النتائج العددية.",
-"Little’s Law states that L = λ × W in a stable system.": "ينص قانون ليتل على أن L = λ × W في النظام المستقر.",
-"Queue discipline determines the order in which customers receive service.": "يحدد نظام الطابور ترتيب حصول العملاء على الخدمة.",
-"FIFO means 'First In First Out' in queueing systems.": "FIFO تعني الداخل أولاً يخرج أولاً في أنظمة الطوابير.",
-"What is a model?": "ما هو النموذج؟",
-"The main purpose of modeling is to:": "الهدف الرئيسي من النمذجة هو:",
-"Which type of model uses equations to represent system behavior?": "أي نوع من النماذج يستخدم المعادلات لتمثيل سلوك النظام؟",
-"A scale model of a building is an example of:": "النموذج المصغر للبناية يعتبر مثالاً على:",
-"Which model represents systems using diagrams or flowcharts?": "أي نموذج يمثل الأنظمة باستخدام المخططات أو المخططات الانسيابية؟",
-"A system is best defined as:": "أفضل تعريف للنظام هو:",
-"Which of the following is considered an input to a system?": "أي مما يلي يعتبر مدخلاً للنظام؟",
-"The result produced after system processing is called:": "النتيجة الناتجة بعد معالجة النظام تسمى:",
-"The process where system outputs influence future inputs is called:": "العملية التي تؤثر فيها مخرجات النظام على المدخلات المستقبلية تسمى:",
-"Which system exchanges energy and matter with its environment?": "أي نظام يتبادل الطاقة والمادة مع البيئة المحيطة؟"
-};
+    // --- MCQs (1-20) ---
+    { q: "What is a model?", arQ: "ما هو النموذج؟", options: [
+        {en:"A complete copy of a real system", ar:"نسخة كاملة من نظام حقيقي", correct:false},
+        {en:"A simplified representation of a real system", ar:"تمثيل مبسط لنظام حقيقي", correct:true},
+        {en:"A random experiment", ar:"تجربة عشوائية", correct:false},
+        {en:"A physical machine", ar:"آلة فيزيائية", correct:false}
+    ]},
+    { q: "The main purpose of modeling is to:", arQ: "الغرض الرئيسي من النمذجة هو:", options: [
+        {en:"Destroy systems", ar:"تدمير الأنظمة", correct:false},
+        {en:"Increase system complexity", ar:"زيادة تعقيد النظام", correct:false},
+        {en:"Understand and analyze systems", ar:"فهم وتحليل الأنظمة", correct:true},
+        {en:"Eliminate data", ar:"إزالة البيانات", correct:false}
+    ]},
+    { q: "Which type of model uses equations to represent system behavior?", arQ: "أي نوع من النماذج يستخدم المعادلات لتمثيل سلوك النظام؟", options: [
+        {en:"Physical model", ar:"نموذج فيزيائي", correct:false},
+        {en:"Mathematical model", ar:"نموذج رياضي", correct:true},
+        {en:"Conceptual model", ar:"نموذج مفاهيمي", correct:false},
+        {en:"Graphical model", ar:"نموذج رسومي", correct:false}
+    ]},
+    { q: "A scale model of a building is an example of:", arQ: "النموذج المصغر للمبنى هو مثال على:", options: [
+        {en:"Mathematical model", ar:"نموذج رياضي", correct:false},
+        {en:"Physical model", ar:"نموذج فيزيائي", correct:true},
+        {en:"Computer model", ar:"نموذج كمبيوتر", correct:false},
+        {en:"Conceptual model", ar:"نموذج مفاهيمي", correct:false}
+    ]},
+    { q: "Which model represents systems using diagrams or flowcharts?", arQ: "أي نموذج يمثل الأنظمة باستخدام المخططات أو الخرائط الانسيابية؟", options: [
+        {en:"Mathematical model", ar:"نموذج رياضي", correct:false},
+        {en:"Conceptual model", ar:"نموذج مفاهيمي", correct:true},
+        {en:"Physical model", ar:"نموذج فيزيائي", correct:false},
+        {en:"Linear model", ar:"نموذج خطي", correct:false}
+    ]},
+    { q: "A system is best defined as:", arQ: "أفضل تعريف للنظام هو:", options: [
+        {en:"Independent elements with no relationship", ar:"عناصر مستقلة لا علاقة بينها", correct:false},
+        {en:"A collection of interrelated components working together", ar:"مجموعة من المكونات المترابطة التي تعمل معاً", correct:true},
+        {en:"Only mechanical devices", ar:"أجهزة ميكانيكية فقط", correct:false},
+        {en:"A random structure", ar:"هيكل عشوائي", correct:false}
+    ]},
+    { q: "Which of the following is considered an input to a system?", arQ: "أي مما يلي يعتبر مدخلاً للنظام؟", options: [
+        {en:"Final product", ar:"المنتج النهائي", correct:false},
+        {en:"Processed output", ar:"المخرجات المعالجة", correct:false},
+        {en:"Raw materials", ar:"المواد الخام", correct:true},
+        {en:"Feedback signal", ar:"إشارة التغذية الراجعة", correct:false}
+    ]},
+    { q: "The result produced after system processing is called:", arQ: "النتيجة الناتجة بعد معالجة النظام تسمى:", options: [
+        {en:"Input", ar:"مدخلات", correct:false},
+        {en:"Feedback", ar:"تغذية راجعة", correct:false},
+        {en:"Output", ar:"مخرجات", correct:true},
+        {en:"Boundary", ar:"حدود", correct:false}
+    ]},
+    { q: "The process where system outputs influence future inputs is called:", arQ: "العملية التي تؤثر فيها مخرجات النظام على المدخلات المستقبلية تسمى:", options: [
+        {en:"Control", ar:"تحكم", correct:false},
+        {en:"Feedback", ar:"تغذية راجعة", correct:true},
+        {en:"Output loop", ar:"حلقة مخرجات", correct:false},
+        {en:"System boundary", ar:"حدود النظام", correct:false}
+    ]},
+    { q: "Which system exchanges energy and matter with its environment?", arQ: "أي نظام يتبادل الطاقة والمادة مع بيئته؟", options: [
+        {en:"Closed system", ar:"نظام مغلق", correct:false},
+        {en:"Isolated system", ar:"نظام معزول", correct:false},
+        {en:"Open system", ar:"نظام مفتوح", correct:true},
+        {en:"Static system", ar:"نظام استاتيكي", correct:false}
+    ]},
+    { q: "A system that changes over time is called:", arQ: "النظام الذي يتغير بمرور الوقت يسمى:", options: [
+        {en:"Static system", ar:"نظام استاتيكي", correct:false},
+        {en:"Dynamic system", ar:"نظام ديناميكي", correct:true},
+        {en:"Linear system", ar:"نظام خطي", correct:false},
+        {en:"Closed system", ar:"نظام مغلق", correct:false}
+    ]},
+    { q: "Simulation is defined as:", arQ: "تعرف المحاكاة بأنها:", options: [
+        {en:"Building physical machines", ar:"بناء آلات فيزيائية", correct:false},
+        {en:"Using a model to study system behavior", ar:"استخدام نموذج لدراسة سلوك النظام", correct:true},
+        {en:"Eliminating system variables", ar:"إزالة متغيرات النظام", correct:false},
+        {en:"Observing systems directly", ar:"مراقبة الأنظمة مباشرة", correct:false}
+    ]},
+    { q: "One advantage of simulation is:", arQ: "أحد مزايا المحاكاة هو:", options: [
+        {en:"High physical risk", ar:"خطر فيزيائي عالٍ", correct:false},
+        {en:"Costly experimentation", ar:"تجريب مكلف", correct:false},
+        {en:"Risk-free experimentation", ar:"تجريب خالٍ من المخاطر", correct:true},
+        {en:"Impossible analysis", ar:"تحليل مستحيل", correct:false}
+    ]},
+    { q: "Which simulation method uses random sampling?", arQ: "أي طريقة محاكاة تستخدم العينات العشوائية؟", options: [
+        {en:"Deterministic method", ar:"الطريقة الحتمية", correct:false},
+        {en:"Linear simulation", ar:"المحاكاة الخطية", correct:false},
+        {en:"Monte Carlo simulation", ar:"محاكاة مونت كارلو", correct:true},
+        {en:"Static simulation", ar:"المحاكاة الاستاتيكية", correct:false}
+    ]},
+    { q: "In discrete-event simulation:", arQ: "في محاكاة الأحداث المنفصلة:", options: [
+        {en:"Time changes continuously", ar:"يتغير الوقت باستمرار", correct:false},
+        {en:"Changes occur only at specific events", ar:"تحدث التغييرات فقط عند أحداث محددة", correct:true},
+        {en:"Systems remain constant", ar:"تظل الأنظمة ثابتة", correct:false},
+        {en:"There are no events", ar:"لا توجد أحداث", correct:false}
+    ]},
+    { q: "Little's Law relates which three variables?", arQ: "قانون ليتل يربط بين أي ثلاثة متغيرات؟", options: [
+        {en:"Speed, distance, time", ar:"السرعة، المسافة، الزمن", correct:false},
+        {en:"Arrival rate, number in system, time in system", ar:"معدل الوصول، العدد في النظام، وقت النظام", correct:true},
+        {en:"Output, input, feedback", ar:"المخرجات، المدخلات، التغذية الراجعة", correct:false},
+        {en:"Capacity, server, queue", ar:"السعة، الخادم، الطابور", correct:false}
+    ]},
+    { q: "In queuing systems, the arrival rate is represented by:", arQ: "في أنظمة الطوابير، يمثل معدل الوصول بالرمز:", options: [
+        {en:"μ (Mu)", ar:"ميو", correct:false},
+        {en:"λ (Lambda)", ar:"لامدا", correct:true},
+        {en:"ρ (Rho)", ar:"رو", correct:false},
+        {en:"W", ar:"دبليو", correct:false}
+    ]},
+    { q: "The service rate in a queuing system is represented by:", arQ: "يمثل معدل الخدمة في نظام الطابور بـ:", options: [
+        {en:"λ (Lambda)", ar:"لامدا", correct:false},
+        {en:"μ (Mu)", ar:"ميو", correct:true},
+        {en:"L", ar:"L", correct:false},
+        {en:"W", ar:"W", correct:false}
+    ]},
+    { q: "FIFO queue discipline means:", arQ: "انضباط الطابور FIFO يعني:", options: [
+        {en:"First In First Out", ar:"ما يدخل أولاً يخرج أولاً", correct:true},
+        {en:"Fast Input Fast Output", ar:"إدخال سريع إخراج سريع", correct:false},
+        {en:"Final Input Final Output", ar:"إدخال نهائي إخراج نهائي", correct:false},
+        {en:"First Input Final Output", ar:"إدخال أول إخراج نهائي", correct:false}
+    ]},
+    { q: "The ratio λ/μ represents:", arQ: "النسبة λ/μ تمثل:", options: [
+        {en:"Queue capacity", ar:"سعة الطابور", correct:false},
+        {en:"Waiting time", ar:"وقت الانتظار", correct:false},
+        {en:"Utilization factor", ar:"عامل الاستخدام", correct:true},
+        {en:"Service time", ar:"وقت الخدمة", correct:false}
+    ]},
 
-{
-q: "A model is a simplified representation of a real-world system used to understand complex systems.",
-arQ: "النموذج هو تمثيل مبسط لنظام حقيقي يُستخدم لفهم الأنظمة المعقدة.",
-options: [
-{text:"True", ar:"صح / True", correct:true},
-{text:"False", ar:"خطأ / False", correct:false}
-]
-},
-{
-q: "Models always include every detail of the real system.",
-arQ: "النماذج تتضمن دائماً كل تفاصيل النظام الحقيقي.",
-options: [
-{text:"True", ar:"صح / True", correct:false},
-{text:"False", ar:"خطأ / False", correct:true}
-]
-},
-{
-q: "A model is a simplified representation of a real-world system used to understand complex systems.",
-options: [
-{text:"True", correct:true},
-{text:"False", correct:false}
-]
-},
-{
-q: "Models always include every detail of the real system.",
-options: [
-{text:"True", correct:false},
-{text:"False", correct:true}
-]
-},
-{
-q: "One objective of modeling is to predict system behavior under different conditions.",
-options: [
-{text:"True", correct:true},
-{text:"False", correct:false}
-]
-},
-{
-q: "Physical models are mathematical equations used to describe systems.",
-options: [
-{text:"True", correct:false},
-{text:"False", correct:true}
-]
-},
-{
-q: "Mathematical models represent systems using equations and mathematical expressions.",
-options: [
-{text:"True", correct:true},
-{text:"False", correct:false}
-]
-},
-{
-q: "A system is a collection of unrelated elements that work independently.",
-options: [
-{text:"True", correct:false},
-{text:"False", correct:true}
-]
-},
-{
-q: "Inputs are the resources or data fed into a system for processing.",
-options: [
-{text:"True", correct:true},
-{text:"False", correct:false}
-]
-},
-{
-q: "Outputs are the results produced by a system after processing inputs.",
-options: [
-{text:"True", correct:true},
-{text:"False", correct:false}
-]
-},
-{
-q: "Feedback occurs when outputs are returned to influence future system behavior.",
-options: [
-{text:"True", correct:true},
-{text:"False", correct:false}
-]
-},
-{
-q: "Closed systems exchange matter freely with their environment.",
-options: [
-{text:"True", correct:false},
-{text:"False", correct:true}
-]
-},
-{
-q: "Dynamic systems change over time, while static systems remain constant.",
-options: [
-{text:"True", correct:true},
-{text:"False", correct:false}
-]
-},
-{
-q: "Deterministic systems include randomness in their outcomes.",
-options: [
-{text:"True", correct:false},
-{text:"False", correct:true}
-]
-},
-{
-q: "Simulation is the process of using a model to study system behavior over time.",
-options: [
-{text:"True", correct:true},
-{text:"False", correct:false}
-]
-},
-{
-q: "Simulation allows risk-free experimentation with real-world scenarios.",
-options: [
-{text:"True", correct:true},
-{text:"False", correct:false}
-]
-},
-{
-q: "Simulation is always cheaper and faster than real-world experiments in every case.",
-options: [
-{text:"True", correct:false},
-{text:"False", correct:true}
-]
-},
-{
-q: "Discrete-event simulation models systems where changes occur at specific points in time.",
-options: [
-{text:"True", correct:true},
-{text:"False", correct:false}
-]
-},
-{
-q: "Monte Carlo simulation uses random sampling to estimate numerical results.",
-options: [
-{text:"True", correct:true},
-{text:"False", correct:false}
-]
-},
-{
-q: "Little’s Law states that L = λ × W in a stable system.",
-options: [
-{text:"True", correct:true},
-{text:"False", correct:false}
-]
-},
-{
-q: "Queue discipline determines the order in which customers receive service.",
-options: [
-{text:"True", correct:true},
-{text:"False", correct:false}
-]
-},
-{
-q: "FIFO means 'First In First Out' in queueing systems.",
-options: [
-{text:"True", correct:true},
-{text:"False", correct:false}
-]
-},
-{
-q: "What is a model?\nA. A complete copy of a real system\nB. A simplified representation of a real system\nC. A random experiment\nD. A physical machine",
-options: [
-{text:"A. A complete copy of a real system", ar:"نسخة كاملة من نظام حقيقي", correct:false},
-{text:"B. A simplified representation of a real system", ar:"تمثيل مبسط لنظام حقيقي", correct:true},
-{text:"C. A random experiment", ar:"تجربة عشوائية", correct:false},
-{text:"D. A physical machine", ar:"آلة فيزيائية", correct:false}
-]
-},
-{
-q: "The main purpose of modeling is to:\nA. Destroy systems\nB. Increase system complexity\nC. Understand and analyze systems\nD. Eliminate data",
-options: [
-{text:"A. Destroy systems", ar:"تدمير الأنظمة", correct:false},
-{text:"B. Increase system complexity", ar:"زيادة تعقيد النظام", correct:false},
-{text:"C. Understand and analyze systems", ar:"فهم وتحليل الأنظمة", correct:true},
-{text:"D. Eliminate data", ar:"إزالة البيانات", correct:false}
-]
-},
-{
-q: "Which type of model uses equations to represent system behavior?\nA. Physical model\nB. Mathematical model\nC. Conceptual model\nD. Graphical model",
-options: [
-{text:"A. Physical model", correct:false},
-{text:"B. Mathematical model", correct:true},
-{text:"C. Conceptual model", correct:false},
-{text:"D. Graphical model", correct:false}
-]
-},
-{
-q: "A scale model of a building is an example of:\nA. Mathematical model\nB. Physical model\nC. Computer model\nD. Conceptual model",
-options: [
-{text:"A. Mathematical model", correct:false},
-{text:"B. Physical model", correct:true},
-{text:"C. Computer model", correct:false},
-{text:"D. Conceptual model", correct:false}
-]
-},
-{
-q: "Which model represents systems using diagrams or flowcharts?\nA. Mathematical model\nB. Conceptual model\nC. Physical model\nD. Linear model",
-options: [
-{text:"A. Mathematical model", correct:false},
-{text:"B. Conceptual model", correct:true},
-{text:"C. Physical model", correct:false},
-{text:"D. Linear model", correct:false}
-]
-},
-{
-q: "A system is best defined as:\nA. Independent elements with no relationship\nB. A collection of interrelated components working together\nC. Only mechanical devices\nD. A random structure",
-options: [
-{text:"A. Independent elements with no relationship", correct:false},
-{text:"B. A collection of interrelated components working together", correct:true},
-{text:"C. Only mechanical devices", correct:false},
-{text:"D. A random structure", correct:false}
-]
-},
-{
-q: "Which of the following is considered an input to a system?\nA. Final product\nB. Processed output\nC. Raw materials\nD. Feedback signal",
-options: [
-{text:"A. Final product", correct:false},
-{text:"B. Processed output", correct:false},
-{text:"C. Raw materials", correct:true},
-{text:"D. Feedback signal", correct:false}
-]
-},
-{
-q: "The result produced after system processing is called:\nA. Input\nB. Feedback\nC. Output\nD. Boundary",
-options: [
-{text:"A. Input", correct:false},
-{text:"B. Feedback", correct:false},
-{text:"C. Output", correct:true},
-{text:"D. Boundary", correct:false}
-]
-},
-{
-q: "The process where system outputs influence future inputs is called:\nA. Control\nB. Feedback\nC. Output loop\nD. System boundary",
-options: [
-{text:"A. Control", correct:false},
-{text:"B. Feedback", correct:true},
-{text:"C. Output loop", correct:false},
-{text:"D. System boundary", correct:false}
-]
-},
-{
-q: "Which system exchanges energy and matter with its environment?\nA. Closed system\nB. Isolated system\nC. Open system\nD. Static system",
-options: [
-{text:"A. Closed system", correct:false},
-{text:"B. Isolated system", correct:false},
-{text:"C. Open system", correct:true},
-{text:"D. Static system", correct:false}
-]
-},
-{
-q: "A system that changes over time is called:\nA. Static system\nB. Dynamic system\nC. Linear system\nD. Closed system",
-options: [
-{text:"A. Static system", correct:false},
-{text:"B. Dynamic system", correct:true},
-{text:"C. Linear system", correct:false},
-{text:"D. Closed system", correct:false}
-]
-},
-{
-q: "Simulation is defined as:\nA. Building physical machines\nB. Using a model to study system behavior\nC. Eliminating system variables\nD. Observing systems directly",
-options: [
-{text:"A. Building physical machines", correct:false},
-{text:"B. Using a model to study system behavior", correct:true},
-{text:"C. Eliminating system variables", correct:false},
-{text:"D. Observing systems directly", correct:false}
-]
-},
-{
-q: "One advantage of simulation is:\nA. High physical risk\nB. Costly experimentation\nC. Risk-free experimentation\nD. Impossible analysis",
-options: [
-{text:"A. High physical risk", correct:false},
-{text:"B. Costly experimentation", correct:false},
-{text:"C. Risk-free experimentation", correct:true},
-{text:"D. Impossible analysis", correct:false}
-]
-},
-{
-q: "Which simulation method uses random sampling?\nA. Deterministic method\nB. Linear simulation\nC. Monte Carlo simulation\nD. Static simulation",
-options: [
-{text:"A. Deterministic method", correct:false},
-{text:"B. Linear simulation", correct:false},
-{text:"C. Monte Carlo simulation", correct:true},
-{text:"D. Static simulation", correct:false}
-]
-},
-{
-q: "In discrete-event simulation:\nA. Time changes continuously\nB. Changes occur only at specific events\nC. Systems remain constant\nD. There are no events",
-options: [
-{text:"A. Time changes continuously", correct:false},
-{text:"B. Changes occur only at specific events", correct:true},
-{text:"C. Systems remain constant", correct:false},
-{text:"D. There are no events", correct:false}
-]
-},
-{
-q: "Little’s Law relates which three variables?\nA. Speed, distance, time\nB. Arrival rate, number in system, time in system\nC. Output, input, feedback\nD. Capacity, server, queue",
-options: [
-{text:"A. Speed, distance, time", correct:false},
-{text:"B. Arrival rate, number in system, time in system", correct:true},
-{text:"C. Output, input, feedback", correct:false},
-{text:"D. Capacity, server, queue", correct:false}
-]
-},
-{
-q: "In queuing systems, the arrival rate is represented by:\nA. μ\nB. λ\nC. ρ\nD. W",
-options: [
-{text:"A. μ", correct:false},
-{text:"B. λ", correct:true},
-{text:"C. ρ", correct:false},
-{text:"D. W", correct:false}
-]
-},
-{
-q: "The service rate in a queuing system is represented by:\nA. λ\nB. µ\nC. L\nD. W",
-options: [
-{text:"A. λ", correct:false},
-{text:"B. µ", correct:true},
-{text:"C. L", correct:false},
-{text:"D. W", correct:false}
-]
-},
-{
-q: "FIFO queue discipline means:\nA. First In First Out\nB. Fast Input Fast Output\nC. Final Input Final Output\nD. First Input Final Output",
-options: [
-{text:"A. First In First Out", correct:true},
-{text:"B. Fast Input Fast Output", correct:false},
-{text:"C. Final Input Final Output", correct:false},
-{text:"D. First Input Final Output", correct:false}
-]
-},
-{
-q: "The ratio λ/µ represents:\nA. Queue capacity\nB. Waiting time\nC. Utilization factor\nD. Service time",
-options: [
-{text:"A. Queue capacity", correct:false},
-{text:"B. Waiting time", correct:false},
-{text:"C. Utilization factor", correct:true},
-{text:"D. Service time", correct:false}
-]
-}
- ,
-{
-q: "What is a model?",
-arQ: "ما هو النموذج؟",
-arQ: "ما هو النموذج؟",
-essay: true,
-answer: "A model is a simplified representation of a real-world system used to understand, analyze, or predict its behavior.",
-arAnswer: "النموذج هو تمثيل مبسط لنظام حقيقي يُستخدم لفهم أو تحليل أو التنبؤ بسلوكه."
-},
-{
-q: "What is simulation?",
-arQ: "ما هي المحاكاة؟",
-essay: true,
-answer: "Simulation is the process of using a model to study the behavior of a system over time.",
-arAnswer: "المحاكاة هي عملية استخدام نموذج لدراسة سلوك النظام مع مرور الوقت."
-},
-{
-q: "Name two types of models.",
-arQ: "اذكر نوعين من النماذج.",
-essay: true,
-answer: "• Physical models
-• Mathematical models",
-arAnswer: "• النماذج الفيزيائية
-• النماذج الرياضية"
-},
-{
-q: "What is a system?",
-arQ: "ما هو النظام؟",
-essay: true,
-answer: "A system is a collection of interrelated components that work together to achieve a common goal.",
-arAnswer: "النظام هو مجموعة من المكونات المترابطة التي تعمل معاً لتحقيق هدف مشترك."
-},
-{
-q: "What are inputs in a system?",
-arQ: "ما هي المدخلات في النظام؟",
-essay: true,
-answer: "Inputs are the resources, data, or energy that enter a system for processing.",
-arAnswer: "المدخلات هي الموارد أو البيانات أو الطاقة التي تدخل إلى النظام للمعالجة."
-},
-{
-q: "What are outputs in a system?",
-arQ: "ما هي المخرجات في النظام؟",
-essay: true,
-answer: "Outputs are the results or products generated by the system after processing inputs.",
-arAnswer: "المخرجات هي النتائج أو المنتجات التي يولدها النظام بعد معالجة المدخلات."
-},
-{
-q: "What does Little’s Law describe?",
-arQ: "ماذا يصف قانون ليتل؟",
-essay: true,
-answer: "Little’s Law describes the relationship between the average number in a system, arrival rate, and average time in the system.",
-arAnswer: "يصف قانون ليتل العلاقة بين متوسط عدد العناصر في النظام ومعدل الوصول ومتوسط الوقت في النظام."
-},
-{
-q: "What is a queue?",
-arQ: "ما هو الطابور؟",
-essay: true,
-answer: "A queue is a line of customers or items waiting for service.",
-arAnswer: "الطابور هو صف من العملاء أو العناصر التي تنتظر الخدمة."
-},
-{
-q: "What does FIFO mean in queueing systems?",
-arQ: "ماذا يعني FIFO في أنظمة الطوابير؟",
-essay: true,
-answer: "FIFO means First In, First Out, where the first customer to arrive is served first.",
-arAnswer: "FIFO تعني الداخل أولاً يخرج أولاً، حيث يتم خدمة أول عميل يصل أولاً."
-},
-{
-q: "What is the arrival rate (λ)?",
-arQ: "ما هو معدل الوصول (λ)؟",
-essay: true,
-answer: "Arrival rate is the average number of customers arriving in the system per unit of time.",
-arAnswer: "معدل الوصول هو متوسط عدد العملاء الذين يصلون إلى النظام لكل وحدة زمنية."
-}
+    // --- Calculation Problems (1-10) ---
+    { q: "A shop receives 4 customers/min, each spends 5 min in system. Find L.", arQ: "محل يستقبل 4 زبائن/دقيقة، يقضي كل منهم 5 دقائق. جد L.", options: [{en:"L = 20", ar:"20", correct:true}, {en:"L = 9", ar:"9", correct:false}] },
+    { q: "L = 12, λ = 3 customers/min. Find W.", arQ: "L=12، معدل الوصول λ=3. جد W.", options: [{en:"W = 4 minutes", ar:"4 دقائق", correct:true}, {en:"W = 36", ar:"36", correct:false}] },
+    { q: "L = 15, W = 5 minutes. Find λ.", arQ: "متوسط العدد 15، الوقت 5 دقائق. جد λ.", options: [{en:"λ = 3/min", ar:"3 زبائن/دقيقة", correct:true}, {en:"λ = 75", ar:"75", correct:false}] },
+    { q: "μ = 8/hour, λ = 6/hour. Find ρ.", arQ: "معدل الخدمة 8، الوصول 6. جد ρ.", options: [{en:"ρ = 0.75", ar:"0.75", correct:true}, {en:"ρ = 1.33", ar:"1.33", correct:false}] },
+    { q: "λ = 10/hour, W = 0.4 hours. Find L.", arQ: "معدل الوصول 10، الوقت 0.4 ساعة. جد L.", options: [{en:"L = 4", ar:"4", correct:true}, {en:"L = 25", ar:"25", correct:false}] },
+    { q: "L = 20, λ = 5/min. Find W.", arQ: "العدد 20، الوصول 5. جد W.", options: [{en:"W = 4 minutes", ar:"4 دقائق", correct:true}, {en:"W = 100", ar:"100", correct:false}] },
+    { q: "λ = 18/hour, μ = 20/hour. Find utilization ρ.", arQ: "الوصول 18، الخدمة 20. جد الاستخدام ρ.", options: [{en:"ρ = 0.9 (90%)", ar:"0.9", correct:true}, {en:"ρ = 0.5", ar:"0.5", correct:false}] },
+    { q: "λ = 6/min, Wq = 2 min. Find Lq.", arQ: "الوصول 6، وقت الانتظار 2. جد Lq.", options: [{en:"Lq = 12", ar:"12", correct:true}, {en:"Lq = 3", ar:"3", correct:false}] },
+    { q: "μ = 15/hour. Find Average service time.", arQ: "معدل الخدمة 15. جد متوسط وقت الخدمة.", options: [{en:"0.067 hours (~4 min)", ar:"0.067 ساعة", correct:true}, {en:"15 min", ar:"15 دقيقة", correct:false}] },
+    { q: "λ = 5/min, W = 6 min. Find L.", arQ: "الوصول 5، الوقت 6. جد L.", options: [{en:"L = 30", ar:"30", correct:true}, {en:"L = 11", ar:"11", correct:false}] },
+
+    // --- Short Answers (1-4 as MCQs) ---
+    { q: "What is the arrival rate (λ)?", arQ: "ما هو معدل الوصول (λ)؟", options: [
+        {en:"Avg number of customers arriving per unit of time", ar:"متوسط عدد الزبائن الواصلين في وحدة الزمن", correct:true},
+        {en:"Total system capacity", ar:"سعة النظام الكلية", correct:false}
+    ]},
+    { q: "What is a queue?", arQ: "ما هو الطابور؟", options: [
+        {en:"A line of customers waiting for service", ar:"خط من الزبائن ينتظرون الخدمة", correct:true},
+        {en:"A server speed", ar:"سرعة الخادم", correct:false}
+    ]},
+    { q: "Name two types of models.", arQ: "اذكر نوعين من النماذج.", options: [
+        {en:"Physical and Mathematical", ar:"فيزيائية ورياضية", correct:true},
+        {en:"Fast and Slow", ar:"سريع وبطيء", correct:false}
+    ]},
+    { q: "What are outputs in a system?", arQ: "ما هي المخرجات في النظام؟", options: [
+        {en:"Results generated after processing inputs", ar:"النتائج المتولدة بعد معالجة المدخلات", correct:true},
+        {en:"Raw materials", ar:"المواد الخام", correct:false}
+    ]}
 ];
 
 let score = 0;
 const container = document.getElementById('quiz-container');
 
 function renderQuiz() {
-questions.forEach((q, index) => {
-const card = document.createElement('div');
-card.className = 'question-card';
-if(q.essay){
-card.innerHTML = `
-<button class="translate-btn" onclick="toggleTranslation(${index})">Translate / ترجمة</button>
-<div id="trans-${index}" class="translation-area"><strong>السؤال:</strong> ${q.arQ || 'تمت إضافة الترجمة'}</div>
-<div class="q-text">${index + 1}. ${q.q}</div>
-<button class="option" onclick="toggleEssayAnswer(${index})">Show Answer</button>
-<div id="essay-${index}" class="translation-area">
-<strong>Answer:</strong><br>${q.answer}<br><br>
-<strong>الترجمة:</strong><br>${q.arAnswer || ''}
-</div>
-`;
-} else {
-card.innerHTML = `
-<button class="translate-btn" onclick="toggleTranslation(${index})">Translate / ترجمة</button>
-<div id="trans-${index}" class="translation-area"><strong>السؤال:</strong> ${q.arQ || ''}</div>
-<div class="q-text">${index + 1}. ${q.q}</div>
-<div id="options-${index}">
-${q.options.map((opt, optIdx) => `
-<button class="option" onclick="checkAnswer(${index}, ${optIdx}, this, ${opt.correct})">
-<span>${opt.text}</span>
-<span class="ar-opt">${opt.ar || 'تمت إضافة الترجمة'}</span>
-</button>
-`).join('')}
-</div>
-<div id="result-${index}" class="result-msg"></div>
-`;
-container.appendChild(card);
-});
+    questions.forEach((q, index) => {
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        card.innerHTML = `
+            <button class="translate-btn" onclick="toggleTranslation(${index})">Translate / ترجمة</button>
+            <div id="trans-${index}" class="translation-area"><strong>السؤال:</strong> ${q.arQ}</div>
+            <div class="q-text">${index + 1}. ${q.q}</div>
+            <div id="options-${index}">
+                ${q.options.map((opt, optIdx) => `
+                    <button class="option" onclick="checkAnswer(${index}, ${optIdx}, this, ${opt.correct})">
+                        <span>${opt.en}</span>
+                        <span class="ar-opt">${opt.ar}</span>
+                    </button>
+                `).join('')}
+            </div>
+            <div id="result-${index}" class="result-msg"></div>
+        `;
+        container.appendChild(card);
+    });
+    document.getElementById('scoreBox').innerText = `النتيجة: 0 / ${questions.length}`;
 }
 
 window.checkAnswer = function(qIdx, optIdx, btn, isCorrect) {
-const parent = document.getElementById(`options-${qIdx}`);
-if (parent.dataset.answered === "true") return;
-parent.dataset.answered = "true";
+    const parent = document.getElementById(`options-${qIdx}`);
+    if (parent.dataset.answered === "true") return;
+    parent.dataset.answered = "true";
 
-const allOptions = parent.querySelectorAll('.option');
-const resultMsg = document.getElementById(`result-${qIdx}`);
-const correctOpt = questions[qIdx].options.find(o => o.correct);
+    const allOptions = parent.querySelectorAll('.option');
+    const resultMsg = document.getElementById(`result-${qIdx}`);
+    const correctOpt = questions[qIdx].options.find(o => o.correct);
 
-allOptions.forEach(opt => {
-opt.querySelector('.ar-opt').style.display = 'block';
-});
+    allOptions.forEach(opt => {
+        opt.querySelector('.ar-opt').style.display = 'block';
+    });
 
-if (isCorrect) {
-score++;
-btn.classList.add('correct');
-resultMsg.innerHTML = `✅ Correct Answer / إجابة صحيحة`;
-if(correctOpt.ar){
-resultMsg.innerHTML += `<br>الترجمة: ${correctOpt.ar}`;
-}
-if(correctOpt.ar){
-resultMsg.innerHTML += `<br><strong>${correctOpt.ar}</strong>`;
-}
-} else {
-btn.classList.add('wrong');
-allOptions.forEach(opt => {
-if (opt.innerHTML.includes(correctOpt.text)) opt.classList.add('correct');
-});
-resultMsg.innerHTML = `❌ Wrong Answer / إجابة خاطئة<br>Correct Answer: ${correctOpt.text}<br>الترجمة: ${correctOpt.ar || 'تمت إضافة الترجمة'}`;
-}
-
-document.getElementById('scoreBox').innerText = `Score: ${score} / ${questions.length}`;
-};
-
-window.toggleEssayAnswer = function(index) {
-const area = document.getElementById(`essay-${index}`);
-if (area.style.display === 'block') {
-area.style.display = 'none';
-} else {
-area.style.display = 'block';
-}
+    if (isCorrect) {
+        score++;
+        btn.classList.add('correct');
+        resultMsg.innerHTML = `<span style="color: green;">✅ إجابة صحيحة: ${correctOpt.ar}</span>`;
+    } else {
+        btn.classList.add('wrong');
+        allOptions.forEach(opt => {
+             if (opt.innerText.includes(correctOpt.en)) opt.classList.add('correct');
+        });
+        resultMsg.innerHTML = `<span style="color: red;">❌ إجابة خاطئة! الصحيح هو: ${correctOpt.en} (${correctOpt.ar})</span>`;
+    }
+    document.getElementById('scoreBox').innerText = `النتيجة: ${score} / ${questions.length}`;
 };
 
 window.toggleTranslation = function(index) {
-const area = document.getElementById(`trans-${index}`);
-const optionsAr = document.querySelectorAll(`#options-${index} .ar-opt`);
-
-if (area.style.display === 'block') {
-area.style.display = 'none';
-optionsAr.forEach(o => o.style.display = 'none');
-} else {
-area.style.display = 'block';
-optionsAr.forEach(o => o.style.display = 'block');
-}
+    const area = document.getElementById(`trans-${index}`);
+    const optionsAr = document.querySelectorAll(`#options-${index} .ar-opt`);
+    const isVisible = area.style.display === 'block';
+    area.style.display = isVisible ? 'none' : 'block';
+    optionsAr.forEach(o => o.style.display = isVisible ? 'none' : 'block');
 };
-
-const optionTranslations = {
-"A. A complete copy of a real system":"أ. نسخة كاملة من نظام حقيقي",
-"B. A simplified representation of a real system":"ب. تمثيل مبسط لنظام حقيقي",
-"C. A random experiment":"ج. تجربة عشوائية",
-"D. A physical machine":"د. آلة فيزيائية",
-"A. Destroy systems":"أ. تدمير الأنظمة",
-"B. Increase system complexity":"ب. زيادة تعقيد النظام",
-"C. Understand and analyze systems":"ج. فهم وتحليل الأنظمة",
-"D. Eliminate data":"د. حذف البيانات",
-"True":"صح",
-"False":"خطأ"
-};
-
-questions.forEach(q => {
-if(q.options){
-q.options.forEach(opt => {
-if(!opt.ar && optionTranslations[opt.text]){
-opt.ar = optionTranslations[opt.text];
-}
-});
-}
-
-if(!q.arQ && autoTranslations[q.q]){
-q.arQ = autoTranslations[q.q];
-}
-});
 
 renderQuiz();
-</script></body>
+</script>
+</body>
 </html>
+
